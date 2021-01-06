@@ -1,0 +1,22 @@
+[
+  {
+    "outputFileName": "wwwwroot/css/site_budle.min.css",
+    "inputFiles": [
+      "wwwroot/lib/bootstrap/css/bootstrap.css",
+      "wwwroot/css/site.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwwroot/js/site_budle.min.js",
+    "inputFiles": [
+      "wwwroot/lib/jquery/jquery.js",
+      "wwwroot/js/site.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/lib/bootstrap/js/bootstrap.min.js",
+    "inputFiles": [
+      "wwwroot/lib/bootstrap/js/bootstrap.js"
+    ]
+  }
+]
