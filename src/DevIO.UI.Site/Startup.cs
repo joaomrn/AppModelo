@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace DevIO.UI.Site
@@ -15,6 +11,14 @@ namespace DevIO.UI.Site
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<RazorViewEngineOptions>(options =>
+            {
+                options.AreaViewLocationFormats.Clear();
+                options.AreaViewLocationFormats.Add("/Modulos/{2}/Views/{1}/{0}.cshtml");
+                options.AreaViewLocationFormats.Add("/Modulos/{2}/Views/Shared/{1}/{0}.cshtml");
+                options.AreaViewLocationFormats.Add("/Modulos/Shared/{0}.cshtml");
+            });
+
             services.AddMvc().SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_2);
         }
 
@@ -31,6 +35,9 @@ namespace DevIO.UI.Site
             app.UseMvc(routes =>
             {
                 routes.MapRoute("default","{controller=Home}/{action=Index}/{id?}");
+
+                routes.MapAreaRoute("AreaProdutos", "Produtos", "Produtos/{controller=home}/{action=Index}/{id?}");
+                routes.MapAreaRoute("AreaVendas", "Vendas", "Vendas/{controller=home}/{action=Index}/{id?}");
             });
         }
     }
